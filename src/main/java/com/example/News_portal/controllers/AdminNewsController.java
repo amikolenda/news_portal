@@ -17,8 +17,8 @@ public class AdminNewsController {
     @Autowired
     private NewsService newsService;
 
-    @GetMapping
-    public ResponseEntity<List<NewsDTO>> showAllNewsByAuthor(Long id) throws ElementNotFoundException {
+    @GetMapping("/{id}")
+    public ResponseEntity<List<NewsDTO>> showAllNewsByAuthor(@PathVariable("id") Long id) throws ElementNotFoundException {
         return ResponseEntity.ok().body(newsService.findAllDTOByAuthor(id));
     }
 
