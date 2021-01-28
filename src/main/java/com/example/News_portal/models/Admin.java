@@ -1,10 +1,12 @@
 package com.example.News_portal.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.sun.istack.NotNull;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
+import java.util.Set;
 
 @Table(name = "ADMIN")
 @Entity
@@ -29,7 +31,7 @@ public class Admin implements Serializable {
         this.userName = userName;
         this.password = password;
     }
-
+    @JsonProperty("user_name")
     public String getUserName() {
         return userName;
     }
@@ -73,6 +75,7 @@ public class Admin implements Serializable {
         Admin admin = (Admin) o;
         return Objects.equals(userName, admin.userName);
     }
+    
 
     @Override
     public int hashCode() {

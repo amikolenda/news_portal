@@ -9,6 +9,7 @@ public class AdminDTO {
     @NotNull
     @JsonProperty("user_name")
     private String userName;
+    @NotNull
     private String password;
     private String role = "ADMIN";
 
@@ -66,4 +67,5 @@ public class AdminDTO {
                 ", role='" + role + '\'' +
                 '}';
     }
+
 }
