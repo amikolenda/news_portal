@@ -31,4 +31,13 @@ public class AdminService {
         Admin found = adminRepository.findAdminByUserName(userName);
         return found;
     }
+
+    public Admin findById(Long id) throws ElementNotFoundException{
+        try{
+            Admin found = adminRepository.findById(id).get();
+            return found;
+        } catch (Exception e){
+            throw new ElementNotFoundException();
+        }
+    }
 }

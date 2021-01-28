@@ -8,6 +8,9 @@ import com.example.News_portal.repositories.NewsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class NewsService {
     @Autowired
@@ -27,6 +30,7 @@ public class NewsService {
         News save = newsRepository.save(news);
         return dtoConverterService.convertNewsDAOToDTO(save);
     }
+
     public News save(News news) throws ElementNotFoundException {
         if (newsRepository.existsByTitle(news.getTitle())) {
             News existingNews = newsRepository.findByTitle(news.getTitle());
@@ -38,4 +42,43 @@ public class NewsService {
     }
 
 
+    public List<NewsDTO> findAllDTO() throws ElementNotFoundException {
+        List<News> allNews = newsRepository.findAll();
+        if (allNews.isEmpty()) throw new ElementNotFoundException();
+        List<NewsDTO> allNewsList = allNews.stream().map(dtoConverterService::convertNewsDAOToDTO).collect(Collectors.toList());
+        return allNewsList;
+    }
+
+    public News findById(Long id) throws ElementNotFoundException {
+        try{
+            News found = newsRepository.findById(id).get();
+            return found;
+        } catch (Exception e){
+            throw new ElementNotFoundException();
+        }
+    }
+
+    public NewsDTO findDTOById(Long id) throws ElementNotFoundException{
+        News found = findById(id);
+        return dtoConverterService.convertNewsDAOToDTO(found);
+
+    }
+
+    public List<NewsDTO> findAllDTOByAuthor(Long id) throws ElementNotFoundException{
+        List<News> allNews = newsRepository.findAllByAuthorOrderByDateTimeCreated(adminService.findById(id));
+        List<NewsDTO> allNewsList = allNews.stream().map(dtoConverterService::convertNewsDAOToDTO).collect(Collectors.toList());
+        return allNewsList;
+    }
+
+    public NewsDTO updateDTO(NewsDTO newsDTO) {
+        if (!newsRepository.existsByTitle(newsDTO.getTitle())) {
+            throw new ElementNotFoundException();
+        }
+        News newNews = dtoConverterService.convertNewsDTOToDAO(newsDTO);
+        newNews.setAuthor(adminService.findByUserName(newNews.getAuthor().getUserName()));
+
+        newsRepository.save(newNews);
+        return dtoConverterService.convertNewsDAOToDTO(newNews);
+
+    }
 }
