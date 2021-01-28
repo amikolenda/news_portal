@@ -10,7 +10,7 @@ import java.util.Objects;
 @Entity
 public class Admin implements Serializable {
     private static final long serialVersionUID = 4241824572545764721L;
-    
+
     @Id
     @GeneratedValue(strategy= GenerationType.SEQUENCE)
     private Long id;
