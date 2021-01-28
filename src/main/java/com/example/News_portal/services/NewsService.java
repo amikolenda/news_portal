@@ -81,4 +81,9 @@ public class NewsService {
         return dtoConverterService.convertNewsDAOToDTO(newNews);
 
     }
+
+    public void delete(Long id) throws ElementNotFoundException{
+        News news = findById(id);
+        newsRepository.delete(news);
+    }
 }

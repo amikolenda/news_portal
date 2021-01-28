@@ -32,6 +32,12 @@ public class AdminNewsController {
         return ResponseEntity.ok().body(newsService.updateDTO(newsDTO));
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteNews(@PathVariable("id") Long id) throws ElementNotFoundException {
+        newsService.delete(id);
+        return ResponseEntity.ok().body("News with an id: " + id + "is deleted");
+    }
+
 
 
 
