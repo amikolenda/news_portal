@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.sun.istack.NotNull;
 
 import java.util.Objects;
-import java.util.Set;
 
 public class AdminDTO {
     @NotNull
@@ -13,7 +12,6 @@ public class AdminDTO {
     @NotNull
     private String password;
     private String role = "ADMIN";
-    private Set<NewsDTO> news;
 
     public AdminDTO() {
     }
@@ -46,14 +44,6 @@ public class AdminDTO {
 
     public AdminDTO setRole(String role) {
         this.role = role;
-        return this;
-    }
-    public Set<NewsDTO> getNews() {
-        return news;
-    }
-
-    public AdminDTO setNews(Set<NewsDTO> news) {
-        this.news = news;
         return this;
     }
 

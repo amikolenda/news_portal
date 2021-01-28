@@ -3,10 +3,7 @@ package com.example.News_portal.models;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
@@ -19,6 +16,7 @@ public class News implements Serializable {
     private static final long serialVersionUID = 5874705216070200136L;
 
     @Id
+    @GeneratedValue(strategy= GenerationType.SEQUENCE)
     private Long id;
     @Column(name = "title")
     @NotNull
@@ -28,12 +26,18 @@ public class News implements Serializable {
     private String text;
     @JsonProperty("date_time_created")
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
-    private Date dateTimeCreated;
+    private Date dateTimeCreated = new Date();
     @Column(name = "author")
     @NotNull
     private Admin author;
 
     public News() {
+    }
+
+    public News(@NotNull String title, @NotNull String text, @NotNull Admin author) {
+        this.title = title;
+        this.text = text;
+        this.author = author;
     }
 
     public Long getId() {

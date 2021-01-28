@@ -23,9 +23,6 @@ public class Admin implements Serializable {
     private String password;
     @Column(name = "role")
     private String role = "ADMIN";
-    @Column(name = "news")
-    @OneToMany(mappedBy="author")
-    private Set<News> news;
 
     public Admin() {
     }
@@ -77,15 +74,7 @@ public class Admin implements Serializable {
         Admin admin = (Admin) o;
         return Objects.equals(userName, admin.userName);
     }
-
-    public Set<News> getNews() {
-        return news;
-    }
-
-    public Admin setNews(Set<News> news) {
-        this.news = news;
-        return this;
-    }
+    
 
     @Override
     public int hashCode() {
