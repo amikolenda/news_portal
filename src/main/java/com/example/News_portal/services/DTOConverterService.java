@@ -14,20 +14,20 @@ public class DTOConverterService {
     @Autowired
     private ModelMapper modelMapper;
 
-    public NewsDTO convertToDTO(News news){
+    public NewsDTO convertNewsDAOToDTO(News news){
         NewsDTO newsDTO = modelMapper.map(news, NewsDTO.class);
         return newsDTO;
     }
-    public News convertAthleteDTOToDAO(NewsDTO newsDTO){
+    public News convertNewsDTOToDAO(NewsDTO newsDTO){
         News news = modelMapper.map(newsDTO, News.class);
         return news;
     }
 
-    public AdminDTO convertToDTO(Admin admin){
+    public AdminDTO convertAdminDAOToDTO(Admin admin){
         AdminDTO adminDTO = modelMapper.map(admin, AdminDTO.class);
         return adminDTO;
     }
-    public Admin convertAthleteDTOToDAO(AdminDTO adminDTO){
+    public Admin convertAdminDTOToDAO(AdminDTO adminDTO){
         Admin admin = modelMapper.map(adminDTO, Admin.class);
         return admin;
     }
