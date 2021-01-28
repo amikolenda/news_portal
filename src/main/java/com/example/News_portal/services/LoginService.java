@@ -1,5 +1,6 @@
 package com.example.News_portal.services;
 
+import com.example.News_portal.repositories.AdminRepository;
 import com.example.News_portal.security.payload.JwtAuthenticationResponse;
 import com.example.News_portal.security.payload.LoginRequest;
 import com.example.News_portal.security.services.AdminDetailsImpl;
@@ -18,6 +19,9 @@ import java.util.stream.Collectors;
 
 @Service
 public class LoginService {
+
+    @Autowired
+    AdminRepository adminRepository;
     @Autowired
     JwtUtility jwtUtility;
 
@@ -32,10 +36,11 @@ public class LoginService {
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String jwt = jwtUtility.generateToken(authentication);
         AdminDetailsImpl adminDetails = (AdminDetailsImpl) authentication.getPrincipal();
+        Long id = adminRepository.findAdminByUserName(adminDetails.getUsername()).getId();
         List<String> roles = adminDetails.getAuthorities().stream()
                 .map(item -> item.getAuthority())
                 .collect(Collectors.toList());
-        return ResponseEntity.ok(new JwtAuthenticationResponse(jwt, adminDetails.getUsername(), roles));
+        return ResponseEntity.ok(new JwtAuthenticationResponse(jwt,id, adminDetails.getUsername(), roles));
     }
 
 }
