@@ -5,6 +5,7 @@ import com.sun.istack.NotNull;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
+import java.util.Set;
 
 @Table(name = "ADMIN")
 @Entity
@@ -22,6 +23,9 @@ public class Admin implements Serializable {
     private String password;
     @Column(name = "role")
     private String role = "ADMIN";
+    @Column(name = "news")
+    @OneToMany(mappedBy="author")
+    private Set<News> news;
 
     public Admin() {
     }
@@ -72,6 +76,15 @@ public class Admin implements Serializable {
         if (o == null || getClass() != o.getClass()) return false;
         Admin admin = (Admin) o;
         return Objects.equals(userName, admin.userName);
+    }
+
+    public Set<News> getNews() {
+        return news;
+    }
+
+    public Admin setNews(Set<News> news) {
+        this.news = news;
+        return this;
     }
 
     @Override

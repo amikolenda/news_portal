@@ -4,13 +4,16 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.sun.istack.NotNull;
 
 import java.util.Objects;
+import java.util.Set;
 
 public class AdminDTO {
     @NotNull
     @JsonProperty("user_name")
     private String userName;
+    @NotNull
     private String password;
     private String role = "ADMIN";
+    private Set<NewsDTO> news;
 
     public AdminDTO() {
     }
@@ -45,6 +48,14 @@ public class AdminDTO {
         this.role = role;
         return this;
     }
+    public Set<NewsDTO> getNews() {
+        return news;
+    }
+
+    public AdminDTO setNews(Set<NewsDTO> news) {
+        this.news = news;
+        return this;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -66,4 +77,5 @@ public class AdminDTO {
                 ", role='" + role + '\'' +
                 '}';
     }
+
 }

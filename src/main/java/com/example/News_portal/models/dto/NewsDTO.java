@@ -21,7 +21,7 @@ public class NewsDTO {
     private Date dateTimeCreated;
     @JsonProperty("author")
     @NotNull
-    private Admin author;
+    private AdminDTO author;
 
     public String getTitle() {
         return title;
@@ -51,11 +51,11 @@ public class NewsDTO {
         return this;
     }
 
-    public Admin getAuthor() {
+    public AdminDTO getAuthor() {
         return author;
     }
 
-    public NewsDTO setAuthor(Admin author) {
+    public NewsDTO setAuthor(AdminDTO author) {
         this.author = author;
         return this;
     }
