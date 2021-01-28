@@ -3,14 +3,15 @@ package com.example.News_portal.security.payload;
 import java.util.List;
 
 public class JwtAuthenticationResponse {
+    private Long id;
     private String accessToken;
     private String tokenType = "Bearer";
-    private Long id;
     private String username;
     private List<String> roles;
 
 
-    public JwtAuthenticationResponse(String accessToken, String username, List<String> roles) {
+    public JwtAuthenticationResponse(String accessToken, Long id, String username, List<String> roles) {
+        this.id = id;
         this.accessToken = accessToken;
         this.username = username;
         this.roles = roles;
@@ -53,12 +54,13 @@ public class JwtAuthenticationResponse {
         return roles;
     }
 
+    public Long getId() {
+        return id;
+    }
+
     public JwtAuthenticationResponse setId(Long id) {
         this.id = id;
         return this;
     }
 
-    public Long getId() {
-        return id;
-    }
 }

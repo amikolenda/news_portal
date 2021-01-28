@@ -18,6 +18,7 @@ public class AdminDetailsImpl implements UserDetails {
     @JsonIgnore
     private static final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
+    private Long id;
     private String username;
 
     @JsonIgnore
@@ -28,8 +29,9 @@ public class AdminDetailsImpl implements UserDetails {
     public AdminDetailsImpl() {
     }
 
-    public AdminDetailsImpl(String username, String password,
+    public AdminDetailsImpl(Long id,String username, String password,
                             Collection<? extends GrantedAuthority> authorities) {
+        this.id = id;
         this.username = username;
         this.password = passwordEncoder.encode(password);
         this.authorities = authorities;
@@ -43,6 +45,7 @@ public class AdminDetailsImpl implements UserDetails {
                 .collect(Collectors.toList());
 
         return new AdminDetailsImpl(
+                admin.getId(),
                 admin.getUserName(),
                 admin.getPassword(),
                 authorities);
@@ -95,5 +98,6 @@ public class AdminDetailsImpl implements UserDetails {
     public int hashCode() {
         return Objects.hash(username);
     }
+
 
 }
