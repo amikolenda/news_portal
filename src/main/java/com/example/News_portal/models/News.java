@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
@@ -27,11 +26,21 @@ public class News implements Serializable {
     @JsonProperty("date_time_created")
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private Date dateTimeCreated;
-    @Column(name = "author")
-    @NotNull
+    @ManyToOne
+    @JoinColumn(name = "author", referencedColumnName = "user_name")
     private Admin author;
+    @Column(name = "img")
+    private String img;
 
     public News() {
+    }
+
+    public News(@NotNull String title, @NotNull String text, Date dateTimeCreated, @NotNull Admin author, String img) {
+        this.title = title;
+        this.text = text;
+        this.dateTimeCreated = dateTimeCreated;
+        this.author = author;
+        this.img = img;
     }
 
     public News(@NotNull String title, @NotNull String text, @NotNull Admin author) {
@@ -90,6 +99,15 @@ public class News implements Serializable {
 
     public News setAuthor(Admin author) {
         this.author = author;
+        return this;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public News setImg(String img) {
+        this.img = img;
         return this;
     }
 

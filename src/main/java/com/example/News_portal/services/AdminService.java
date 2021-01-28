@@ -24,7 +24,7 @@ public class AdminService {
         return dtoConverterService.convertAdminDAOToDTO(save);
     }
 
-    public Admin findByUserName(String userName) {
+    public Admin findByUserName(String userName) throws ElementNotFoundException{
         if (!adminRepository.existsByUserName(userName)) {
             throw new ElementNotFoundException();
         }

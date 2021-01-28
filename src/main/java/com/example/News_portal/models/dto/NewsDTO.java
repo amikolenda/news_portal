@@ -1,6 +1,5 @@
 package com.example.News_portal.models.dto;
 
-import com.example.News_portal.models.Admin;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -22,8 +21,17 @@ public class NewsDTO {
     @JsonProperty("author")
     @NotNull
     private AdminDTO author;
+    private String img;
 
     public NewsDTO() {
+    }
+
+    public NewsDTO(@NotNull String title, @NotNull String text, @NotNull Date dateTimeCreated, @NotNull AdminDTO author, String img) {
+        this.title = title;
+        this.text = text;
+        this.dateTimeCreated = dateTimeCreated;
+        this.author = author;
+        this.img = img;
     }
 
     public NewsDTO(@NotNull String title, @NotNull String text, @NotNull Date dateTimeCreated, @NotNull AdminDTO author) {
@@ -38,6 +46,7 @@ public class NewsDTO {
         this.text = text;
         this.author = author;
     }
+
 
     public String getTitle() {
         return title;
@@ -73,6 +82,15 @@ public class NewsDTO {
 
     public NewsDTO setAuthor(AdminDTO author) {
         this.author = author;
+        return this;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public NewsDTO setImg(String img) {
+        this.img = img;
         return this;
     }
 

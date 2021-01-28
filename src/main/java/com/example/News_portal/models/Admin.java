@@ -1,5 +1,6 @@
 package com.example.News_portal.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.sun.istack.NotNull;
 
 import javax.persistence.*;
@@ -30,7 +31,7 @@ public class Admin implements Serializable {
         this.userName = userName;
         this.password = password;
     }
-
+    @JsonProperty("user_name")
     public String getUserName() {
         return userName;
     }

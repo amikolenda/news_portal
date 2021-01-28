@@ -36,7 +36,8 @@ public class NewsService {
             News existingNews = newsRepository.findByTitle(news.getTitle());
             news.setId(existingNews.getId());
         }
-        news.setAuthor(adminService.findByUserName(news.getAuthor().getUserName()));
+        String authorUserName = news.getAuthor().getUserName();
+        news.setAuthor(adminService.findByUserName(authorUserName));
         News save = newsRepository.save(news);
         return save;
     }
@@ -85,5 +86,9 @@ public class NewsService {
     public void delete(Long id) throws ElementNotFoundException{
         News news = findById(id);
         newsRepository.delete(news);
+    }
+
+    public void saveAll(List<News> news) {
+        for (News newS:news) save(newS);
     }
 }
