@@ -18,7 +18,7 @@ public class NewsService {
     @Autowired
     private AdminService adminService;
 
-    public NewsDTO save(NewsDTO newsDTO) throws ElementExistsException {
+    public NewsDTO saveDTO(NewsDTO newsDTO) throws ElementExistsException {
         if (newsRepository.existsByTitle(newsDTO.getTitle())) {
             throw new ElementExistsException();
         }

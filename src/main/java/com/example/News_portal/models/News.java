@@ -26,7 +26,7 @@ public class News implements Serializable {
     private String text;
     @JsonProperty("date_time_created")
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
-    private Date dateTimeCreated = new Date();
+    private Date dateTimeCreated;
     @Column(name = "author")
     @NotNull
     private Admin author;
@@ -37,6 +37,14 @@ public class News implements Serializable {
     public News(@NotNull String title, @NotNull String text, @NotNull Admin author) {
         this.title = title;
         this.text = text;
+        this.author = author;
+        this.dateTimeCreated = new Date();
+    }
+
+    public News(@NotNull String title, @NotNull String text, Date dateTimeCreated, @NotNull Admin author) {
+        this.title = title;
+        this.text = text;
+        this.dateTimeCreated = dateTimeCreated;
         this.author = author;
     }
 

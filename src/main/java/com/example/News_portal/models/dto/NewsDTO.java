@@ -23,6 +23,22 @@ public class NewsDTO {
     @NotNull
     private AdminDTO author;
 
+    public NewsDTO() {
+    }
+
+    public NewsDTO(@NotNull String title, @NotNull String text, @NotNull Date dateTimeCreated, @NotNull AdminDTO author) {
+        this.title = title;
+        this.text = text;
+        this.dateTimeCreated = dateTimeCreated;
+        this.author = author;
+    }
+
+    public NewsDTO(@NotNull String title, @NotNull String text, @NotNull AdminDTO author) {
+        this.title = title;
+        this.text = text;
+        this.author = author;
+    }
+
     public String getTitle() {
         return title;
     }
