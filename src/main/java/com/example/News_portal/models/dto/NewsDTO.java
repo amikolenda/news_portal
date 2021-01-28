@@ -40,7 +40,7 @@ public class NewsDTO {
         this.text = text;
         return this;
     }
-    
+
     @JsonProperty("date_time_created")
     public Date getDateTimeCreated() {
         return dateTimeCreated;
