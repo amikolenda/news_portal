@@ -1,6 +1,7 @@
 package com.example.News_portal.services;
 
 import com.example.News_portal.exceptions.ElementExistsException;
+import com.example.News_portal.exceptions.ElementNotFoundException;
 import com.example.News_portal.models.Admin;
 import com.example.News_portal.models.dto.AdminDTO;
 import com.example.News_portal.repositories.AdminRepository;
@@ -23,4 +24,11 @@ public class AdminService {
         return dtoConverterService.convertAdminDAOToDTO(save);
     }
 
+    public Admin findByUserName(String userName) {
+        if (!adminRepository.existsByUserName(userName)) {
+            throw new ElementNotFoundException();
+        }
+        Admin found = adminRepository.findAdminByUserName(userName);
+        return found;
+    }
 }

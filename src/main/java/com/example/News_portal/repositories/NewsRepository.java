@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface NewsRepository extends JpaRepository<News, Long> {
     public List<News> findAllByAuthorOrderByDateTimeCreated(Admin author);
+
+    public boolean existsByTitle(String title);
 }
