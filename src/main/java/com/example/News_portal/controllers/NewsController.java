@@ -1,6 +1,5 @@
 package com.example.News_portal.controllers;
 
-import com.example.News_portal.exceptions.ElementExistsException;
 import com.example.News_portal.exceptions.ElementNotFoundException;
 import com.example.News_portal.models.dto.NewsDTO;
 import com.example.News_portal.services.NewsService;

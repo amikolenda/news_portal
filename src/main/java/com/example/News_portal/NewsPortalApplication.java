@@ -3,15 +3,18 @@ package com.example.News_portal;
 import com.example.News_portal.models.News;
 import com.example.News_portal.models.dto.AdminDTO;
 import com.example.News_portal.services.AdminService;
+import com.example.News_portal.services.DTOConverterService;
 import com.example.News_portal.services.NewsService;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -49,7 +52,13 @@ public class NewsPortalApplication {
 
 		}
 	}
-
+	@Bean
+	AdminService adminServic(){return new AdminService();}
+	@Bean
+	@Primary
+	DTOConverterService dtoConverterServic(){return new DTOConverterService();}
+    @Bean
+	NewsService newsServic(){return new NewsService();}
 	@Bean
 	ApplicationRunner applicationRunner(NewsService newsService, AdminService adminService) {
 		return args -> {
