@@ -9,4 +9,6 @@ public interface NewsRepository extends JpaRepository<News, Long> {
     public List<News> findAllByAuthorOrderByDateTimeCreated(Admin author);
 
     public boolean existsByTitle(String title);
+
+    public News findByTitle(String title);
 }
