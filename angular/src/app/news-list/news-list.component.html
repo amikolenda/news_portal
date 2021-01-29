@@ -1,0 +1,87 @@
+<button
+          class="btn btn-outline-secondary"
+          type="button"
+          *ngIf="isLoggedIn"
+          (click)="changeVisability()"
+        >
+          Your News
+        </button>
+
+<div class="list row">
+  <div class="col-md-8">
+    <div class="input-group mb-3">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Search by title"
+        [(ngModel)]="title"
+      />
+      <div class="input-group-append">
+        <button
+          class="btn btn-outline-secondary"
+          type="button"
+          (click)="searchTitle()"
+        >
+          Search
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6" *ngIf="!adminVisability">
+    <h4>All News</h4>
+    <ul class="list-group">
+      <li
+        class="list-group-item"
+        *ngFor="let newS of news; let i = index"
+        [class.active]="i == currentIndex"
+        (click)="setActiveNews(newS, i)"
+      >
+        {{ newS.title }}
+      </li>
+    </ul>
+
+  </div>
+  <div class="col-md-6" *ngIf="adminVisability"> //PUT ADMIN POST HERE
+    <h4>All News</h4>
+    <ul class="list-group">
+      <li
+        class="list-group-item"
+        *ngFor="let newS of adminNews; let i = index"
+        [class.active]="i == currentIndex"
+        (click)="setActiveNews(newS, i)"
+      >
+        {{ newS.title }}
+      </li>
+    </ul>
+
+  </div>
+
+
+  <div class="col-md-6">
+    <div *ngIf="currentNews">
+
+      <div>
+        <strong> {{ currentNews?.title }}</strong>
+      </div>
+      <div>
+        {{ currentNews?.text }}
+      </div>
+      <div>
+        <label><strong>Date Created:</strong></label>
+        {{ currentNews?.date_time_created }}
+      </div>
+      <a class="badge badge-warning" *ngIf="isLoggedIn" routerLink="/admin/{{ currentNews?.id }}">
+        Edit
+      </a>
+      <a class="badge badge-warning" *ngIf="isLoggedIn" routerLink="/admin/delete{{ currentNews?.id }}">
+        Delete
+      </a>
+
+    </div>
+
+    <div *ngIf="!currentNews">
+      <br />
+      <p>Choose News to read...</p>
+    </div>
+  </div>
+</div>
