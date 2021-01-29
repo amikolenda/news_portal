@@ -19,7 +19,7 @@ public class AdminDetailsImpl implements UserDetails {
     private static final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     private Long id;
-    private String username;
+    private String user_name;
 
     @JsonIgnore
     private String password;
@@ -29,10 +29,10 @@ public class AdminDetailsImpl implements UserDetails {
     public AdminDetailsImpl() {
     }
 
-    public AdminDetailsImpl(Long id,String username, String password,
+    public AdminDetailsImpl(Long id, String user_name, String password,
                             Collection<? extends GrantedAuthority> authorities) {
         this.id = id;
-        this.username = username;
+        this.user_name = user_name;
         this.password = passwordEncoder.encode(password);
         this.authorities = authorities;
     }
@@ -63,7 +63,7 @@ public class AdminDetailsImpl implements UserDetails {
 
     @Override
     public String getUsername() {
-        return username;
+        return user_name;
     }
 
     @Override
@@ -91,12 +91,12 @@ public class AdminDetailsImpl implements UserDetails {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         AdminDetailsImpl that = (AdminDetailsImpl) o;
-        return username.equals(that.username);
+        return user_name.equals(that.user_name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(username);
+        return Objects.hash(user_name);
     }
 
 

@@ -12,7 +12,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/news/admin")
+@RequestMapping("/api/admin")
 public class AdminNewsController {
     @Autowired
     private NewsService newsService;

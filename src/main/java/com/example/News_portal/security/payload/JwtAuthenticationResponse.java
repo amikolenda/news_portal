@@ -6,14 +6,14 @@ public class JwtAuthenticationResponse {
     private Long id;
     private String accessToken;
     private String tokenType = "Bearer";
-    private String username;
+    private String user_name;
     private List<String> roles;
 
 
-    public JwtAuthenticationResponse(String accessToken, Long id, String username, List<String> roles) {
+    public JwtAuthenticationResponse(String accessToken, Long id, String user_name, List<String> roles) {
         this.id = id;
         this.accessToken = accessToken;
-        this.username = username;
+        this.user_name = user_name;
         this.roles = roles;
     }
 
@@ -28,8 +28,8 @@ public class JwtAuthenticationResponse {
         return this;
     }
 
-    public JwtAuthenticationResponse setUsername(String username) {
-        this.username = username;
+    public JwtAuthenticationResponse setUser_name(String user_name) {
+        this.user_name = user_name;
         return this;
     }
 
@@ -46,8 +46,8 @@ public class JwtAuthenticationResponse {
         return tokenType;
     }
 
-    public String getUsername() {
-        return username;
+    public String getUser_name() {
+        return user_name;
     }
 
     public List<String> getRoles() {

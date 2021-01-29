@@ -64,7 +64,7 @@ public class NewsPortalApplication {
 		return args -> {
 			ObjectMapper mapper = new ObjectMapper();
 			try {
-				AdminDTO admin = new AdminDTO("admin","admin");
+				AdminDTO admin = new AdminDTO("admin","admin1234");
 				adminService.save(admin);
 				InputStream inputStream = TypeReference.class.getResourceAsStream("/json/news.json");
 				List<News> news = mapper.readValue(inputStream,new TypeReference<List<News>>(){});
