@@ -6,6 +6,8 @@ import com.sun.istack.NotNull;
 import java.util.Objects;
 
 public class AdminDTO {
+
+    private Long id;
     @NotNull
     @JsonProperty("user_name")
     private String userName;
@@ -16,6 +18,11 @@ public class AdminDTO {
     public AdminDTO() {
     }
     public AdminDTO(String userName, String password) {
+        this.userName = userName;
+        this.password = password;
+    }
+    public AdminDTO(Long id,String userName, String password) {
+        this.id = id;
         this.userName = userName;
         this.password = password;
     }
@@ -58,6 +65,15 @@ public class AdminDTO {
     @Override
     public int hashCode() {
         return Objects.hash(userName);
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public AdminDTO setId(Long id) {
+        this.id = id;
+        return this;
     }
 
     @Override

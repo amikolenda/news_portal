@@ -1,9 +1,9 @@
 [
   {
     "title": "A title",
-    "text": "A text",
+    "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam gravida suscipit turpis. Sed sollicitudin sollicitudin metus sit amet volutpatm at...",
     "date_time_created": "2020-01-20 19:16:20",
     "author": {"user_name" : "admin"},
-    "img": "https://upload.wikimedia.org/wikipedia/commons/b/bd/Ian_Millar_head.jpg"
+    "img": "https://image.jpg"
   }
 ]

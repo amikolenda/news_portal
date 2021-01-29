@@ -45,7 +45,6 @@ public class NewsService {
 
     public List<NewsDTO> findAllDTO() throws ElementNotFoundException {
         List<News> allNews = newsRepository.findAll();
-        if (allNews.isEmpty()) throw new ElementNotFoundException();
         List<NewsDTO> allNewsList = allNews.stream().map(dtoConverterService::convertNewsDAOToDTO).collect(Collectors.toList());
         return allNewsList;
     }
@@ -65,8 +64,8 @@ public class NewsService {
 
     }
 
-    public List<NewsDTO> findAllDTOByAuthor(Long id) throws ElementNotFoundException{
-        List<News> allNews = newsRepository.findAllByAuthorOrderByDateTimeCreated(adminService.findById(id));
+    public List<NewsDTO> findAllDTOByAuthor(String userName) throws ElementNotFoundException{
+        List<News> allNews = newsRepository.findAllByAuthorOrderByDateTimeCreated(adminService.findByUserName(userName));
         List<NewsDTO> allNewsList = allNews.stream().map(dtoConverterService::convertNewsDAOToDTO).collect(Collectors.toList());
         return allNewsList;
     }
@@ -90,5 +89,14 @@ public class NewsService {
 
     public void saveAll(List<News> news) {
         for (News newS:news) save(newS);
+    }
+
+    public NewsDTO findDTOByTitle(String title) {
+        try{
+            News found = newsRepository.findByTitle(title);
+            return dtoConverterService.convertNewsDAOToDTO(found);
+        } catch (Exception e){
+            throw new ElementNotFoundException();
+        }
     }
 }

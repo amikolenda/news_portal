@@ -25,5 +25,10 @@ public class NewsController {
         return ResponseEntity.ok().body(newsService.findDTOById(id));
     }
 
+    @GetMapping("/{title}")
+    public ResponseEntity<NewsDTO> showNewsByTitle(@PathVariable("title") String title) throws ElementNotFoundException {
+        return ResponseEntity.ok().body(newsService.findDTOByTitle(title));
+    }
+
 
 }
